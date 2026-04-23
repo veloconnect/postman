@@ -1,0 +1,10 @@
+name: Demoserver
+variables:
+  - name: ServerUrl
+    value: http://api.demo.veloconnect.io/
+  - name: BuyersID
+    value: becker@dibike.org
+  - secret: true
+    name: Password
+  - name: ItemID
+    value: ""

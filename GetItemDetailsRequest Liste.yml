@@ -1,0 +1,52 @@
+info:
+  name: GetItemDetailsRequest Liste
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{ServerUrl}}"
+  headers:
+    - name: Content-Type
+      value: application/xml
+  body:
+    type: json
+    data: |-
+      <?xml version="1.0" encoding="UTF-8"?>
+      <GetItemDetailsListRequest
+        xmlns="urn:veloconnect:order-1.1"
+        xmlns:vct="urn:veloconnect:transaction-1.0"
+        xmlns:cac="urn:oasis:names:specification:ubl:schema/xsd:CommonAggregateComponents-1.0"
+        xmlns:cbc="urn:oasis:names:specification:ubl:schema/xsd:CommonBasicComponents-1.0">
+
+        <vct:BuyersID>{{BuyersID}}</vct:BuyersID>
+        <vct:Credential>
+          <vct:Password>{{Password}}</vct:Password>
+        </vct:Credential>
+
+        <RequestEntry>
+          <cac:SellersItemIdentification>
+            <cac:ID>200300156</cac:ID>
+          </cac:SellersItemIdentification>
+          <!-- Optional: gewünschte Menge anfragen (liefert z.B. 'partially_available') -->
+          <!-- <cbc:Quantity quantityUnitCode="EA">10</cbc:Quantity> -->
+        </RequestEntry>
+
+        <RequestEntry>
+          <cac:SellersItemIdentification>
+            <cac:ID>200600721</cac:ID>
+          </cac:SellersItemIdentification>
+          <!-- Optional GTIN/EAN statt Sellers-ID:
+          <cac:StandardItemIdentification>
+            <cac:ID identificationSchemeID="EAN/UCC-13">4019238521234</cac:ID>
+          </cac:StandardItemIdentification>
+          -->
+        </RequestEntry>
+
+      </GetItemDetailsListRequest>
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

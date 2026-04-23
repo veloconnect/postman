@@ -1,0 +1,67 @@
+info:
+  name: SearchResultRequest DETAIL
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{ServerUrl}}"
+  headers:
+    - name: Content-Type
+      value: application/xml
+  body:
+    type: xml
+    data: |-
+      <?xml version="1.0" encoding="UTF-8"?>
+      <SearchResultRequest
+          xmlns="urn:veloconnect:search-1.1"
+          xmlns:vct="urn:veloconnect:transaction-1.0">
+
+        <vct:BuyersID>{{BuyersID}}</vct:BuyersID>
+        <vct:Credential>
+          <vct:Password>{{Password}}</vct:Password>
+        </vct:Credential>
+
+        <TransactionID>{{TransactionID}}</TransactionID>
+        <StartIndex>0</StartIndex>
+        <Count>500</Count>
+        <ResultFormat>ITEM_DETAIL</ResultFormat>
+        <IsTest>false</IsTest>
+
+      </SearchResultRequest>
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "// XML-Antwort einlesen\r
+
+        const responseXML = JSON.stringify(res.getBody());\r
+
+        \r
+
+        // Erste SellersItemIdentification extrahieren\r
+
+        const match = responseXML.match(/<cac:SellersItemIdentification>\\s*<cac:ID>(.*?)<\\/cac:ID>/);\r
+
+        \r
+
+        // Wenn gefunden, speichern als ItemID\r
+
+        if (match) {\r
+
+        \    bru.setEnvVar(\"ItemID\", match[1]);\r
+
+        \    console.log(\"ItemID gesetzt:\", match[1]);\r
+
+        } else {\r
+
+        \    console.warn(\"Keine ItemID gefunden.\");\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

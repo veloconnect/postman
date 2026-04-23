@@ -1,0 +1,12 @@
+name: Template
+variables:
+  - name: ServerUrl
+    value: ""
+  - name: BuyersID
+    value: ""
+  - secret: true
+    name: Password
+  - name: TransactionID
+    value: ""
+  - name: ItemID
+    value: ""

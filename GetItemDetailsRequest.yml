@@ -1,0 +1,36 @@
+info:
+  name: GetItemDetailsRequest
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{ServerUrl}}"
+  headers:
+    - name: Content-Type
+      value: application/xml
+  body:
+    type: xml
+    data: |-
+      <?xml version="1.0" encoding="UTF-8"?>
+      <GetItemDetailsRequest
+          xmlns="urn:veloconnect:order-1.1"
+          xmlns:vct="urn:veloconnect:transaction-1.0"
+          xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-1.0">
+
+        <vct:BuyersID>{{BuyersID}}</vct:BuyersID>
+        <vct:Credential>
+          <vct:Password>{{Password}}</vct:Password>
+        </vct:Credential>
+
+        <cac:SellersItemIdentification>
+          <cac:ID>{{ItemID}}</cac:ID>
+        </cac:SellersItemIdentification>
+
+      </GetItemDetailsRequest>
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
