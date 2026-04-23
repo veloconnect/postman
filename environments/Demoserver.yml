@@ -3,7 +3,7 @@ variables:
   - name: ServerUrl
     value: http://api.demo.veloconnect.io/
   - name: BuyersID
-    value: test@veloconnect.de
+    value: test@veloconnect.org
   - secret: true
     name: Password
   - name: ItemID
