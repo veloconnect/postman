@@ -1,9 +1,0 @@
-# Bruno environments with real credentials
-environments/Demoserver.yml
-
-# OS-Dateien
-.DS_Store
-Thumbs.db
-
-# Bruno local config
-.bruno/
