@@ -1,0 +1,38 @@
+info:
+  name: GET CreateTextSearchRequest
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{vc_url}}?RequestName=CreateTextSearchRequest&BuyersID={{vc_user}}&Password={{vc_pass}}&IsTest=false&SearchString="
+  params:
+    - name: RequestName
+      value: CreateTextSearchRequest
+      type: query
+    - name: BuyersID
+      value: "{{vc_user}}"
+      type: query
+    - name: Password
+      value: "{{vc_pass}}"
+      type: query
+    - name: IsTest
+      value: "false"
+      type: query
+    - name: SearchString
+      value: ""
+      type: query
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const transactionId = res.body.match(/TransactionID>(.*)<.*TransactionID>/)[1];
+
+        bru.setVar("textSearchTransactionId", transactionId);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,32 @@
+info:
+  name: POST UpdateOrderRequest
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{vc_url}}"
+  body:
+    type: xml
+    data: |-
+      <UpdateOrderRequest>
+          <BuyersID>{{vc_user}}</BuyersID>
+          <Credential>
+              <Password>{{vc_pass}}</Password>
+          </Credential>
+          <TransactionID>{{createOrderTransactionId}}}</TransactionID>
+          <IsTest>true</IsTest>
+          <OrderRequestLine>
+              <SellersItemIdentification>
+                  <ID>200200456</ID>
+              </SellersItemIdentification>
+              <Quantity quantityUnitCode="EA">1</Quantity>
+              <xBacklogIndicator>false</xBacklogIndicator>
+          </OrderRequestLine>
+      </UpdateOrderRequest>
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

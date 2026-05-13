@@ -1,0 +1,47 @@
+info:
+  name: GET CreateOrderRequest
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{vc_url}}?BuyersID={{vc_user}}&Password={{vc_pass}}&RequestName=CreateOrderRequest&Quantity.200300156=1&quantityUnitCode.200300156=EA&Quantity.200600221=2&quantityUnitCode.200600221=EA&IsTest=false"
+  params:
+    - name: BuyersID
+      value: "{{vc_user}}"
+      type: query
+    - name: Password
+      value: "{{vc_pass}}"
+      type: query
+    - name: RequestName
+      value: CreateOrderRequest
+      type: query
+    - name: Quantity.200300156
+      value: "1"
+      type: query
+    - name: quantityUnitCode.200300156
+      value: EA
+      type: query
+    - name: Quantity.200600221
+      value: "2"
+      type: query
+    - name: quantityUnitCode.200600221
+      value: EA
+      type: query
+    - name: IsTest
+      value: "false"
+      type: query
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const transactionId = res.body.match(/TransactionID>(.*)<.*TransactionID>/)[1];
+
+        bru.setVar("createOrderTransactionId", transactionId);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

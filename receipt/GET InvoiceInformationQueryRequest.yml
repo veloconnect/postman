@@ -1,0 +1,47 @@
+info:
+  name: GET InvoiceInformationQueryRequest
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{vc_url}}?RequestName=InvoiceInformationQueryRequest&BuyersID={{vc_user}}&Password={{vc_pass}}&IsTest=false"
+  params:
+    - name: RequestName
+      value: InvoiceInformationQueryRequest
+      type: query
+    - name: BuyersID
+      value: "{{vc_user}}"
+      type: query
+    - name: Password
+      value: "{{vc_pass}}"
+      type: query
+    - name: IsTest
+      value: "false"
+      type: query
+    - name: ThruDate
+      value: 2025-09-25
+      type: query
+      disabled: true
+    - name: FromDate
+      value: 2025-09-09
+      type: query
+      disabled: true
+    - name: DeliveryNoteID
+      value: DN-123456789
+      type: query
+      disabled: true
+    - name: OrderID
+      value: O-123456789
+      type: query
+      disabled: true
+    - name: OrderConfirmationID
+      value: OC-123456789
+      type: query
+      disabled: true
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

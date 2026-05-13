@@ -1,0 +1,31 @@
+info:
+  name: GET GetStatusRequest
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{vc_url}}?RequestName=GetStatusRequest&BuyersID={{vc_user}}&Password={{vc_pass}}&IsTest=false"
+  params:
+    - name: RequestName
+      value: GetStatusRequest
+      type: query
+    - name: BuyersID
+      value: "{{vc_user}}"
+      type: query
+    - name: Password
+      value: "{{vc_pass}}"
+      type: query
+    - name: IsTest
+      value: "false"
+      type: query
+    - name: TransactionID
+      value: ""
+      type: query
+      disabled: true
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
