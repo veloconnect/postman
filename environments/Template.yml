@@ -1,12 +1,8 @@
-name: Template
+name: template
 variables:
-  - name: ServerUrl
-    value: ""
-  - name: BuyersID
-    value: ""
-  - secret: true
-    name: Password
-  - name: TransactionID
-    value: ""
-  - name: ItemID
-    value: ""
+  - name: vc_url
+    value: https://domain.tld/path
+  - name: vc_user
+    value: 123
+  - name: vc_pass
+    value: verySecretPassword

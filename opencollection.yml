@@ -1,7 +1,7 @@
 opencollection: 1.0.0
 
 info:
-  name: veloconnect requests
+  name: Veloconnect
 config:
   proxy:
     inherit: true
@@ -15,28 +15,16 @@ config:
       bypassProxy: ""
 
 request:
-  variables:
-    - name: ServerUrl
-      value: ""
-    - name: BuyersID
-      value: ""
-    - name: Password
-      value: ""
-    - name: TransactionID
-      value: ""
-    - name: ItemID
-      value: ""
-    - name: VC_SupportedVersions
-      value: ""
-  scripts:
-    - type: before-request
-      code: req.setHeader("User-Agent", "DiBike-Postman-Veloconnect-Test");
+  headers:
+    - name: User-Agent
+      value: DiBike Bruno Veloconnect collection
 
 docs:
   content: |-
-    Collection of Veloconnect queries
+    # Collection of Veloconnect queries
 
-    In order to use these queries, you will need the ServerURL, username (BuyersID) and password for the Veloconnect server.
+    In order to use these queries, you will need the server URL, username (BuyersID) and password for the Veloconnect server.
+
     Please use collection environments to store these details.
   type: text/markdown
 bundled: false

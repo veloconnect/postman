@@ -1,0 +1,24 @@
+info:
+  name: POST GetProfileRequest
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{vc_url}}"
+  body:
+    type: xml
+    data: |-
+      <GetProfileRequest xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-1.0" xmlns="urn:veloconnect:profle-1.0" xmlns:vct="urn:veloconnect:transaction-1.0" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-1.0">
+          <vct:BuyersID>{{vc_user}}</vct:BuyersID>
+          <vct:Credential>
+              <vct:Password>{{vc_pass}}</vct:Password>
+          </vct:Credential>
+          <vct:IsTest>false</vct:IsTest>
+      </GetProfileRequest>
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

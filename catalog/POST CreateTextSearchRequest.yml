@@ -1,0 +1,32 @@
+info:
+  name: POST CreateTextSearchRequest
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{vc_url}}"
+  body:
+    type: xml
+    data: |-
+      <CreateTextSearchRequest xmlns="urn:veloconnect:catalog-1.1" xmlns:vct="urn:veloconnect:transaction-1.0">
+          <vct:BuyersID>{{vc_user}}</vct:BuyersID>
+          <vct:Credential>
+              <vct:Password>{{vc_pass}}</vct:Password>
+          </vct:Credential>
+          <SearchString languageID="DE"></SearchString>
+      </CreateTextSearchRequest>
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const transactionId = res.body.match(/TransactionID>(.*)<.*TransactionID>/)[1];
+
+        bru.setVar("textSearchTransactionId", transactionId);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

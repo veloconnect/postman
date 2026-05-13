@@ -1,0 +1,28 @@
+info:
+  name: POST GetItemStatusStockTransmitB2BRequest
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{vc_url}}"
+  body:
+    type: xml
+    data: |-
+      <GetItemStatusStockTransmitB2BRequest xmlns="urn:veloconnect:stock-B2B-1.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <BuyersID xmlns="urn:veloconnect:transaction-1.0">{{vc_user}}</BuyersID>
+          <Credential xmlns="urn:veloconnect:transaction-1.0">
+              <Password>{{vc_pass}}</Password>
+          </Credential>
+          <TransactionID xmlns="urn:veloconnect:transaction-1.0">123</TransactionID>
+          <IsTest xmlns="urn:veloconnect:transaction-1.0">false</IsTest>
+          <StartIndex>0</StartIndex>
+          <Count>100</Count>
+          <DoNotClose>false</DoNotClose>
+      </GetItemStatusStockTransmitB2BRequest>
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
